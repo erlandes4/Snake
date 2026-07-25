@@ -32,22 +32,24 @@ class Game(object):
 
         self.enemies = [] # Cria os inimigos e passa o canvas para eles saberem onde devem ser desenhados
 
-    def spawnner(self): 
-        time_generation_enemies = 0 #variavel de tempo para spawnar o inimigo
-        for i in range(10):  # Cria 10 inimigos
-            if time_generation_enemies == 0:
-                self.enemies.append(enemies(self.canvas))
-            else:
-                self.canvas.after(time_generation_enemies, self.enemies.append(enemies(self.canvas)))  #Chama a função que cria os inimigos na tela depois de tantos milissegundos
-            time_generation_enemies += 100  # Incrementa o tempo de geração dos inimigos
+    def spawnner(self, count_enemies): 
+        # Verifica se ainda não chegamos nos 10 inimigos
+         if count_enemies < 10:
+            
+            # 1. Primeiro, criamos O INIMIGO DE FATO e guardamos na lista
+            novo_inimigo = enemies(self.canvas)
+            self.enemies.append(novo_inimigo)
+            
+            # 2. Pede ao Tkinter para chamar ESTA MESMA FUNÇÃO daqui a 1 segundo.
+            # Note que passamos o count_enemies + 1 como o terceiro item do after!
+            self.canvas.after(1000, self.spawnner, count_enemies + 1)
             
     def run(self):
         # Inicia o loop principal do tkinter. É isso que mantém a janela aberta esperando por ações (como cliques ou teclas)
-        self.spawnner()
+        self.spawnner(0)
         self.root.mainloop()
         
-        
-            
+                    
 # 4. Ponto de Entrada do Programa
 if __name__ == "__main__":
     game = Game() # Cria uma instância do jogo
