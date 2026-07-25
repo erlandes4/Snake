@@ -41,7 +41,7 @@ class Game(object):
             
             # 2. Pede ao Tkinter para chamar ESTA MESMA FUNÇÃO daqui a 1 segundo.
             # Note que passamos o count_enemies + 1 como o terceiro item do after!
-            self.canvas.after(1000, self.spawnner, count_enemies + 1)
+            self.canvas.after(5000, self.spawnner, count_enemies + 1)
             
     def run(self):
         # Inicia o loop principal do tkinter. É isso que mantém a janela aberta esperando por ações (como cliques ou teclas)

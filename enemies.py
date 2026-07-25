@@ -17,9 +17,13 @@ class enemies(object):
        # 2. randrange sorteia um número de 0 até a Largura, mas pulando de 20 em 20 (0, 20, 40, 60...)
         x = random.randrange(0, Constant.Largura, self.tamanho)
         y = random.randrange(0, Constant.Altura, self.tamanho)     # Posição onde o inimigo vai nascer (100 pixels para direita, 100 para baixo)   
-        x, y, x + self.tamanho, y + self.tamanho,
-        fill="red",           # Pinta o quadrado de vermelho
-        tag="enemies"         # Dá a etiqueta "enemies" para podermos movê-lo ou apagá-lo depois
+        enemy = self.canvas.create_rectangle(
+            x, y, x + self.tamanho, y + self.tamanho,
+            fill="red",           # Pinta o quadrado de vermelho
+            tag="enemies"         # Dá a etiqueta "enemies" para podermos movê-lo ou apagá-lo depois
+        )
+        self.segments.append(enemy)
+        
         
     def move_randomly(self):
             # 1. Lista com as 4 direções possíveis (dx, dy)
