@@ -34,8 +34,7 @@ class Game(object):
 
     def spawnner(self, count_enemies): 
         # Verifica se ainda não chegamos nos 10 inimigos
-         if count_enemies < 10:
-            
+        if count_enemies < 10:
             # 1. Primeiro, criamos O INIMIGO DE FATO e guardamos na lista
             novo_inimigo = enemies(self.canvas)
             self.enemies.append(novo_inimigo)
