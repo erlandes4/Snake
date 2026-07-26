@@ -22,7 +22,10 @@ class Game(object):
         )
         # fill=tk.BOTH -> Diz para o fundo preto preencher tanto a largura (X) quanto a altura (Y)
         # expand=True -> Diz para o fundo preto acompanhar a janela se ela for redimensionada
-        self.canvas.pack(fill=tk.BOTH, expand=True)
+        self.canvas.pack(
+            fill=tk.BOTH,
+            expand=True,
+            )
         
         # 3. Criação da Cobra e Controles
         self.snake = Snake(self.canvas)  # Cria a cobra e passa o canvas para ela saber onde deve ser desenhada

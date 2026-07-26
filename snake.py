@@ -1,8 +1,10 @@
-class Snake(object):
+import Constant
+from Entity import Entity
+
+class Snake(Entity,object):
     # 1. Construtor (O que acontece quando a cobra nasce)
     def __init__(self, canvas):
-        self.canvas = canvas      # Salva a referência da tela de desenho passada pelo arquivo principal
-        self.segments = []        # Cria uma lista vazia que vai guardar as partes do corpo da cobra
+        super().__init__(canvas)
         self.create_snake()       # Chama a função que desenha a cobra na tela pela primeira vez
 
     # 2. Criação da Cobra
@@ -34,6 +36,9 @@ class Snake(object):
             dx = -tamanho         # Se for para a Esquerda, o X diminui
         elif event.keysym == "Right":
             dx = tamanho          # Se for para a Direita, o X aumenta
-
+        
+        # Chama a função antes de aplicar o movimento para garantir que a cobra não saia da tela
+        dx, dy = self.restringe_move(dx, dy)
         # Pega TUDO no canvas que tiver a etiqueta "snake" e move dx pixels pro lado e dy pixels pra cima/baixo
         self.canvas.move("snake", dx, dy)
+        
